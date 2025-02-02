@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEA Dashboard แผนกบริการและลูกค้าสัมพันธ์ นครพนม</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: 
+                "sidebar header"
+                "sidebar content";
+            height: 100vh;
+            background: #1a1a2e;
+            color: white;
+        }
+        
+        /* เมนูด้านซ้าย */
+        .sidebar {
+            grid-area: sidebar;
+            background: #222;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar a {
+            color: gold;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            background: #444;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background: #666;
+        }
+
+        /* แถบด้านบน (YouTube + ประชาสัมพันธ์) */
+        .header {
+            grid-area: header;
+            background: linear-gradient(90deg, rgba(255, 215, 0, 0.8), rgba(255, 165, 0, 0.8));
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .header img {
+            width: 150px;
+            border-radius: 10px;
+        }
+
+        .header iframe {
+            width: 300px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        /* พื้นที่แสดงผล */
+        .content {
+            grid-area: content;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* ซ่อนเนื้อหาเริ่มต้น */
+        .page {
+            display: none;
+        }
+
+        /* แสดงเนื้อหาเมื่อถูกเลือก */
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- เมนูด้านซ้าย -->
+    <div class="sidebar">
+        <a href="#" onclick="showPage('dashboard1')">Dashboard 1</a>
+        <a href="#" onclick="showPage('dashboard2')">Dashboard 2</a>
+        <a href="#" onclick="showPage('dashboard3')">Dashboard 3</a>
+    </div>
+
+    <!-- แถบด้านบน -->
+    <div class="header">
+        <iframe src="https://www.youtube.com/embed/F5oluJAoXCI" allowfullscreen></iframe>
+        <img src="https://i.postimg.cc/xjKg3fX3/PEA-A5.jpg" alt="ประชาสัมพันธ์">
+    </div>
+
+    <!-- พื้นที่แสดงผล -->
+    <div class="content">
+        <div id="dashboard1" class="page active">
+            <h2>Dashboard 1</h2>
+            <iframe src="https://lookerstudio.google.com/embed/reporting/xxxx" width="100%" height="400px"></iframe>
+        </div>
+
+        <div id="dashboard2" class="page">
+            <h2>Dashboard 2</h2>
+            <iframe src="https://lookerstudio.google.com/embed/reporting/yyyy" width="100%" height="400px"></iframe>
+        </div>
+
+        <div id="dashboard3" class="page">
+            <h2>Dashboard 3</h2>
+            <iframe src="https://lookerstudio.google.com/embed/reporting/zzzz" width="100%" height="400px"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // ซ่อนทุกหน้า
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // แสดงเฉพาะหน้าที่ถูกเลือก
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
