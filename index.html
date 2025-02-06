@@ -63,6 +63,11 @@
     <div class="p-1 bg-green-60">
       <div class="marquee text-black font-semibold" id="marquee">Demo ผบส.นครพนม. Update me with your latest announcements!</div>
     </div>
+    <div class="carousel w-full overflow-hidden relative">
+      <img src="image1.jpg" class="active w-full">
+      <img src="image2.jpg" class="w-full">
+      <img src="image3.jpg" class="w-full">
+    </div>
     <div class="flex flex-grow">
       <div class="w-1/6 bg-green-40 p-4 space-y-4 border-r border-green-900">
         <button class="w-full flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300" onclick="loadContent('https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_n1rtfwprod')">
@@ -73,30 +78,6 @@
           <span>📄</span>
           <span>About</span>
         </button>
-        <button class="w-full flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300" onclick="loadContent('https://test-alert2.vercel.app')">
-          <span>📧</span>
-          <span>Contact</span>
-        </button>
-      </div>
-      <!-- No.7: Additional Links -->
-        <div class="mt-8 space-y-4 border-t border-green-900 pt-4">
-          <a href="https://sabuyservice.pea.co.th/" class="flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300">
-            <span>🔗</span>
-            <span>Link 1</span>
-          </a>
-          <a href="https://www.pea.co.th/our-services/download/customer-guideline" class="flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300">
-            <span>🔗</span>
-            <span>Link 2</span>
-          </a>
-          <a href="https://peasolar.pea.co.th/package-lists" class="flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300">
-            <span>🔗</span>
-            <span>Link 3</span>
-          </a>
-          <a href="https://www.pea.co.th/our-services/tariff" class="flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300">
-            <span>🔗</span>
-            <span>Link 4</span>
-          </a>
-        </div>
       </div>
       <div class="flex flex-col flex-grow bg-gray-50 p-4">
         <div class="w-full mb-4">
@@ -111,37 +92,7 @@
         </div>
       </div>
     </div>
-    <div class="p-1 bg-green-100 flex justify-between">
-      <div id="visitor-counter" class="text-sm text-gray-700">Visitors: 0</div>
-      <div class="text-sm text-gray-700">Developed by: PEA NPN CS</div>
-    </div>
   </div>
-  <!-- No.9: Carousel -->
-      <div class="w-1/6 bg-green-40 p-4">
-        <div class="carousel">
-          <img src="https://i.postimg.cc/xjKg3fX3/PEA-A5.jpg" class="w-full h-150 object-cover rounded-lg active">
-          <img src="https://i.postimg.cc/qBPPN0MJ/IMG-6993-jpeg.webp" class="w-full h-150 object-cover rounded-lg">
-          <img src="https://i.postimg.cc/59B3mMSN/jpg.webp" class="w-full h-100 object-cover rounded-lg">
-          <img src="https://i.postimg.cc/0QfzbZ7x/0-jpg.webp" class="w-full h-150 object-cover rounded-lg">
-          <img src="https://i.postimg.cc/T113hxRq/S-5087797-jpg.webp" class="w-full h-150 object-cover rounded-lg">
-<!-- หรือใช้ลิงค์เพื่อเปิดในแท็บใหม่ -->
-          <a href="https://sabuyservice.pea.co.th/" target="_blank" class="block p-2 bg-green-400 rounded-lg text-white text-center hover:bg-green-300">
-            📊 Click Here
-          </a>
-        
-        </div>
-<!-- กราฟแท่งเทียน (Set Index) -->
-        <div class="mt-4">
-          <!-- ฝังกราฟแท่งเทียน (Set Index) ภายใน iframe -->
-          <!--iframe src="ต้องแก้ลิ้งค์นี้ก่อน" class="w-full h-150" frameborder="0"></iframe-->
-          <img src="https://i.postimg.cc/FHZ42R5W/Smart-Plus.jpg" class="w-full h-150 object-cover rounded-lg">
-          <!-- หรือใช้ลิงค์เพื่อเปิดในแท็บใหม่ -->
-          <a href="https://www.pea.co.th/" class="block p-2 bg-green-400 rounded-lg text-white text-center hover:bg-green-300">
-            📊 PEA.CO.TH
-          </a>
-        </div>
-      </div>
-    </div>
   <script>
     function updateClock() {
       const now = new Date();
@@ -156,33 +107,14 @@
     function loadContent(page) {
       document.getElementById('content-area').innerHTML = `<iframe src="${page}" class="w-full h-full border-none"></iframe>`;
     }
-     // Carousel Functionality
-    let carouselIndex = 0;
     function showNextImage() {
       const images = document.querySelectorAll('.carousel img');
-      images[carouselIndex].classList.remove('active');
-      carouselIndex = (carouselIndex + 1) % images.length;
-      images[carouselIndex].classList.add('active');
+      let activeIndex = [...images].findIndex(img => img.classList.contains('active'));
+      images[activeIndex].classList.remove('active');
+      activeIndex = (activeIndex + 1) % images.length;
+      images[activeIndex].classList.add('active');
     }
     setInterval(showNextImage, 3000);
-    function toggleFullscreen() {
-      const contentArea = document.getElementById('content-area');
-      if (!document.fullscreenElement) {
-        contentArea.requestFullscreen();
-      } else {
-        document.exitFullscreen();
-        loadContent('https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_n1rtfwprod');
-      }
-    }
-    document.addEventListener("fullscreenchange", () => {
-      if (!document.fullscreenElement) {
-        loadContent('https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_n1rtfwprod');
-      }
-    });
-    let visitorCount = localStorage.getItem('visitorCount') || 0;
-    visitorCount++;
-    localStorage.setItem('visitorCount', visitorCount);
-    document.getElementById('visitor-counter').textContent = `Visitors: ${visitorCount}`;
   </script>
 </body>
 </html>
