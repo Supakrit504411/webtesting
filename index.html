@@ -35,6 +35,9 @@
       top: 0;
       left: 0;
       z-index: 9999;
+      background: white;
+      display: flex;
+      flex-direction: column;
     }
     #content-area {
       min-height: 600px;
@@ -64,9 +67,9 @@
       <div class="marquee text-black font-semibold" id="marquee">Demo ผบส.นครพนม. Update me with your latest announcements!</div>
     </div>
     <div class="carousel w-full overflow-hidden relative">
-      <img src="image1.jpg" class="active w-full">
-      <img src="image2.jpg" class="w-full">
-      <img src="image3.jpg" class="w-full">
+      <img src="https://i.postimg.cc/xjKg3fX3/PEA-A5.jpg" class="active w-full">
+      <img src="https://i.postimg.cc/qBPPN0MJ/IMG-6993-jpeg.webp" class="w-full">
+      <img src="https://i.postimg.cc/59B3mMSN/jpg.webp" class="w-full">
     </div>
     <div class="flex flex-grow">
       <div class="w-1/6 bg-green-40 p-4 space-y-4 border-r border-green-900">
@@ -78,6 +81,14 @@
           <span>📄</span>
           <span>About</span>
         </button>
+        <div class="mt-4">
+          <h3 class="text-lg font-semibold">🔗 Additional Links</h3>
+          <ul class="list-disc pl-4">
+            <li><a href="https://sabuyservice.pea.co.th/" class="text-blue-600 hover:underline">Link 1</a></li>
+            <li><a href="https://www.pea.co.th/our-services/download/customer-guideline" class="text-blue-600 hover:underline">Link 2</a></li>
+            <li><a href="https://peasolar.pea.co.th/package-lists" class="text-blue-600 hover:underline">Link 3</a></li>
+          </ul>
+        </div>
       </div>
       <div class="flex flex-col flex-grow bg-gray-50 p-4">
         <div class="w-full mb-4">
@@ -115,6 +126,19 @@
       images[activeIndex].classList.add('active');
     }
     setInterval(showNextImage, 3000);
+    function toggleFullscreen() {
+      const elem = document.documentElement;
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement) {
+        location.reload();
+      }
+    });
   </script>
 </body>
 </html>
