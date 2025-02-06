@@ -1,133 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEA Dashboard แผนกบริการและลูกค้าสัมพันธ์ นครพนม</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            grid-template-rows: auto 1fr;
-            grid-template-areas: 
-                "sidebar header"
-                "sidebar content";
-            height: 100vh;
-            background: #1a1a2e;
-            color: white;
-        }
-        
-        /* เมนูด้านซ้าย */
-        .sidebar {
-            grid-area: sidebar;
-            background: #222;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .sidebar a {
-            color: gold;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-            border-radius: 5px;
-            background: #444;
-            text-align: center;
-        }
-
-        .sidebar a:hover {
-            background: #666;
-        }
-
-        /* แถบด้านบน (YouTube + ประชาสัมพันธ์) */
-        .header {
-            grid-area: header;
-            background: linear-gradient(90deg, rgba(255, 215, 0, 0.8), rgba(255, 165, 0, 0.8));
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .header img {
-            width: 150px;
-            border-radius: 10px;
-        }
-
-        .header iframe {
-            width: 300px;
-            height: 150px;
-            border-radius: 10px;
-        }
-
-        /* พื้นที่แสดงผล */
-        .content {
-            grid-area: content;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        /* ซ่อนเนื้อหาเริ่มต้น */
-        .page {
-            display: none;
-        }
-
-        /* แสดงเนื้อหาเมื่อถูกเลือก */
-        .active {
-            display: block;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Website</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      animation: marquee 30s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .carousel img {
+      display: none;
+    }
+    .carousel img.active {
+      display: block;
+    }
+    body {
+      overflow-x: hidden;
+    }
+    .website-name {
+      height: 60px;
+    }
+    .fullscreen {
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+    #content-area {
+      min-height: 600px;
+      flex-grow: 1.5;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    @media (max-width: 1024px) {
+      .flex-row { flex-direction: column; }
+      .w-1\/6 { width: 100%; }
+      .flex-grow { flex-grow: 1; }
+      iframe { height: 400px; }
+    }
+  </style>
 </head>
-<body>
-
-    <!-- เมนูด้านซ้าย -->
-    <div class="sidebar">
-        <a href="#" onclick="showPage('dashboard1')">Dashboard 1</a>
-        <a href="#" onclick="showPage('dashboard2')">Dashboard 2</a>
-        <a href="#" onclick="showPage('dashboard3')">Dashboard 3</a>
+<body class="bg-white text-gray-900">
+  <div class="flex flex-col h-screen">
+    <div class="flex flex-row items-center justify-between p-2 bg-green-300 website-name">
+      <div>
+        <img src="https://i.postimg.cc/gjypPggg/DSC-6805-1.jpg" alt="Logo" class="w-28 h-28 rounded-full border-4 border-white">
+      </div>
+      <div class="text-2xl font-bold text-white">แผนกบริการและลูกค้าสัมพันธ์ (นครพนม)</div>
+      <div id="clock" class="text-m font-mono text-white"></div>
     </div>
-
-    <!-- แถบด้านบน -->
-    <div class="header">
-        <iframe src="https://www.youtube.com/embed/F5oluJAoXCI" allowfullscreen></iframe>
-        <img src="https://i.postimg.cc/xjKg3fX3/PEA-A5.jpg" alt="ประชาสัมพันธ์">
+    <div class="p-1 bg-green-60">
+      <div class="marquee text-black font-semibold" id="marquee">Demo ผบส.นครพนม. Update me with your latest announcements!</div>
     </div>
-
-    <!-- พื้นที่แสดงผล -->
-    <div class="content">
-        <div id="dashboard1" class="page active">
-            <h2>Dashboard 1</h2>
-            <iframe src="https://test-alert2.vercel.app/" width="100%" height="400px"></iframe>
+    <div class="flex flex-grow">
+      <div class="w-1/6 bg-green-40 p-4 space-y-4 border-r border-green-900">
+        <button class="w-full flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300" onclick="loadContent('https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_n1rtfwprod')">
+          <span>🏠</span>
+          <span>Home</span>
+        </button>
+        <button class="w-full flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300" onclick="loadContent('https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_l9p9j946od')">
+          <span>📄</span>
+          <span>About</span>
+        </button>
+        <button class="w-full flex items-center space-x-2 p-2 bg-green-400 rounded-lg hover:bg-green-300" onclick="loadContent('https://test-alert2.vercel.app')">
+          <span>📧</span>
+          <span>Contact</span>
+        </button>
+      </div>
+      <div class="flex flex-col flex-grow bg-gray-50 p-4">
+        <div class="w-full mb-4">
+          <iframe class="w-full h-96" src="https://www.youtube.com/embed/F5oluJAoXCI" frameborder="0" allowfullscreen></iframe>
         </div>
-
-        <div id="dashboard2" class="page">
-            <h2>Dashboard 2</h2>
-            <iframe src="https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_n1rtfwprod" width="100%" height="400px"></iframe>
+        <div class="mb-4">
+          <button id="fullscreen-btn" class="p-3 bg-green-500 text-white rounded-lg hover:bg-green-400" onclick="toggleFullscreen()">Fullscreen</button>
         </div>
-
-        <div id="dashboard3" class="page">
-            <h2>Dashboard 3</h2>
-            <iframe src="https://peasolar.pea.co.th/package-lists/" width="100%" height="400px"></iframe>
+        <div id="content-area" class="flex-grow bg-white p-4 border rounded-lg">
+          <h2 class="text-xl font-semibold">Welcome!</h2>
+          <p>Select a menu item to load content here.</p>
         </div>
+      </div>
     </div>
-
-    <script>
-        function showPage(pageId) {
-            // ซ่อนทุกหน้า
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-
-            // แสดงเฉพาะหน้าที่ถูกเลือก
-            document.getElementById(pageId).classList.add('active');
-        }
-    </script>
-
+    <div class="p-1 bg-green-100 flex justify-between">
+      <div id="visitor-counter" class="text-sm text-gray-700">Visitors: 0</div>
+      <div class="text-sm text-gray-700">Developed by: PEA NPN CS</div>
+    </div>
+  </div>
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const formattedTime = `${hours % 12 || 12}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+      document.getElementById('clock').textContent = formattedTime;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+    function loadContent(page) {
+      document.getElementById('content-area').innerHTML = `<iframe src="${page}" class="w-full h-full border-none"></iframe>`;
+    }
+    function toggleFullscreen() {
+      const contentArea = document.getElementById('content-area');
+      if (!document.fullscreenElement) {
+        contentArea.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+        loadContent('https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_n1rtfwprod');
+      }
+    }
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement) {
+        loadContent('https://lookerstudio.google.com/embed/reporting/37f35bed-8ca3-44fd-9a88-4ef8d222d5db/page/p_n1rtfwprod');
+      }
+    });
+    let visitorCount = localStorage.getItem('visitorCount') || 0;
+    visitorCount++;
+    localStorage.setItem('visitorCount', visitorCount);
+    document.getElementById('visitor-counter').textContent = `Visitors: ${visitorCount}`;
+  </script>
 </body>
 </html>
